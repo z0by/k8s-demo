@@ -6,13 +6,13 @@ terraform {
 provider "google-beta" {
   credentials = "${file(var.account_file_path)}"
   project     = "${var.project}"
-  region      = "${var.gcloud-zone}"
+  region      = "${var.gcloud-region}"
 }
 
 resource "google_container_cluster" "gcp_kubernetes"  {
   provider = "google-beta"
   name               = "${var.cluster_name}"
-  location               = "${var.gcloud-zone}"
+  location               = "${var.gcloud-region}"
   initial_node_count = "${var.gcp_cluster_count}"
   
   min_master_version = "1.12.7"
