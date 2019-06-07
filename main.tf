@@ -6,14 +6,29 @@ terraform {
 provider "google" {
   credentials = "${file(var.account_file_path)}"
   project     = "${var.project}"
-  region      = "${var.gcloud-region}"
+  region      = "${var.gcloud-zone}"
 }
 
 resource "google_container_cluster" "gcp_kubernetes" {
   name               = "${var.cluster_name}"
   location               = "${var.gcloud-zone}"
   initial_node_count = "${var.gcp_cluster_count}"
-
+  
+  min_master_version = "1.12.7"
+  
+  cluster_autoscaling {
+    enabled = "true"
+  }
+  maintenance_policy {
+    daily_maintenance_window {
+      start_time = "03:00"
+    }
+  }
+  
+  logging_service = "none"
+  
+  monitoring_service = "none"
+  
   master_auth {
     username = "${var.linux_admin_username}"
     password = "${var.linux_admin_password}}"
