@@ -41,11 +41,3 @@ variable "cluster_name" {
   description = "Cluster name for the GCP Cluster."
   default = "vault-test"
 }
-
-variable "bucket" {
-  description = "Tfstate bucket"
-}
-variable "bucket_prefix" {
-  description = "Tfstate bucket prefix"
-
-}
