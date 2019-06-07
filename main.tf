@@ -17,7 +17,7 @@ resource "google_container_cluster" "gcp_kubernetes" {
   min_master_version = "1.12.7"
   
   cluster_autoscaling {
-    enabled = "true"
+    enabled = true
   }
   maintenance_policy {
     daily_maintenance_window {
