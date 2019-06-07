@@ -20,9 +20,12 @@ resource "google_container_cluster" "gcp_kubernetes"  {
   cluster_autoscaling {
     enabled = true
     resource_limits {
-      maximum {
-        cpu = 10
-        memory = 64
+        cpu {
+          maximum = "10"
+        }
+        memory {
+          maximum = "64"
+        }
       }
     }
   }
